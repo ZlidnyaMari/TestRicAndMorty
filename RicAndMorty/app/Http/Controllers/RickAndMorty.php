@@ -8,9 +8,19 @@ use App\Models\Person;
 use App\Models\PersonEpisode;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class RickAndMorty
 {
+
+    public function index(): View
+    {
+        return view('rickAndMorty.index', [
+            'person' => Person::all(),
+            'episode' => Episode::all(),
+        ]);
+    }
     public function getRikAndMorty()
     {
         $result = [];
@@ -45,7 +55,7 @@ class RickAndMorty
         return $result;
     }
 
-    public function saveRikAndMorty()
+    public function saveRikAndMorty(): \Illuminate\Http\RedirectResponse
     {
         $response = $this->getRikAndMorty();
 
@@ -56,6 +66,10 @@ class RickAndMorty
                 $infoPersons[] = $item;
             }
         }
+
+        PersonEpisode::query()->truncate();
+        Person::query()->truncate();
+        Location::query()->truncate();
 
         DB::transaction(function () use ($infoPersons) {
             foreach ($infoPersons as $infoPerson) {
@@ -73,9 +87,10 @@ class RickAndMorty
                 }
             }
         });
+        return redirect()->route('indexRoute');
     }
 
-    public function saveEpisode()
+    public function saveEpisode(): \Illuminate\Http\RedirectResponse
     {
         $response = $this->getEpisodes();
         $episodes = [];
@@ -85,6 +100,9 @@ class RickAndMorty
                 $episodes[] = $item;
             }
         }
+
+        PersonEpisode::query()->truncate();
+        Episode::query()->truncate();
 
         DB::transaction(function () use ($episodes) {
             foreach ($episodes as $episodeItem) {
@@ -106,5 +124,6 @@ class RickAndMorty
             }
         });
 
+        return redirect()->route('indexRoute');
     }
 }

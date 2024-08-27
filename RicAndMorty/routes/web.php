@@ -13,9 +13,9 @@ use App\Http\Controllers\RickAndMorty;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('save_rick_and_morty_info', [RickAndMorty::class, 'saveRikAndMorty'])->name('saveRikAndMortyRoute');
-Route::get('save_episode_rick_and_morty', [RickAndMorty::class, 'saveEpisode'])->name('saveEpisodeRoute');
+Route::get('index', [RickAndMorty::class, 'index'])->name('indexRoute');
+Route::post('save_rick_and_morty_info', [RickAndMorty::class, 'saveRikAndMorty'])->name('saveRikAndMortyRoute');
+Route::post('save_episode_rick_and_morty', [RickAndMorty::class, 'saveEpisode'])->name('saveEpisodeRoute');
 
 Route::get('/', function () {
     return view('welcome');

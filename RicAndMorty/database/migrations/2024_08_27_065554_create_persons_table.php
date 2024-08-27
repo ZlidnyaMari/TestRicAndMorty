@@ -33,8 +33,8 @@ return new class extends Migration
 
         Schema::create('person_episode', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('person_id')->constrained('persons')->onDelete('cascade');
-            $table->foreignId('episode_id')->constrained()->onDelete('cascade');
+            $table->foreignId('person_id');
+            $table->foreignId('episode_id');
         });
     }
 
