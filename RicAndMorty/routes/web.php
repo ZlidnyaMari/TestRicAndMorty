@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RickAndMorty;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('save_rick_and_morty_info', [RickAndMorty::class, 'saveRikAndMorty'])->name('saveRikAndMortyRoute');
+Route::get('save_episode_rick_and_morty', [RickAndMorty::class, 'saveEpisode'])->name('saveEpisodeRoute');
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
