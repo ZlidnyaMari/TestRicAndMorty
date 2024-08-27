@@ -20,3 +20,10 @@
     @if($episode)
         Загружено эпизодов: <p>{{count($episode)}}</p>
     @endif
+
+    <div>
+        <form method="post" action="{{route('saveExelRoute')}}">
+            @csrf
+            <button>Сформировать exel фаил с данными через Job</button>
+        </form>
+    </div>

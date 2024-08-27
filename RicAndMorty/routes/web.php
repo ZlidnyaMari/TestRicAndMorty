@@ -16,6 +16,7 @@ use App\Http\Controllers\RickAndMorty;
 Route::get('index', [RickAndMorty::class, 'index'])->name('indexRoute');
 Route::post('save_rick_and_morty_info', [RickAndMorty::class, 'saveRikAndMorty'])->name('saveRikAndMortyRoute');
 Route::post('save_episode_rick_and_morty', [RickAndMorty::class, 'saveEpisode'])->name('saveEpisodeRoute');
+Route::post('save_exel', [RickAndMorty::class, 'saveExel'])->name('saveExelRoute');
 
 Route::get('/', function () {
     return view('welcome');

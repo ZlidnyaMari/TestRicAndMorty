@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ExelRickAndMorty;
 use App\Models\Episode;
 use App\Models\Location;
 use App\Models\Person;
 use App\Models\PersonEpisode;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Symfony\Component\Process\Process;
 
 class RickAndMorty
 {
@@ -125,5 +126,12 @@ class RickAndMorty
         });
 
         return redirect()->route('indexRoute');
+    }
+
+    public function saveExel()
+    {
+        ExelRickAndMorty::dispatch();
+
+        return redirect()->back();
     }
 }
